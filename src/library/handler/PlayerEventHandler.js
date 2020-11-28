@@ -29,8 +29,11 @@ class PlayerEventHandler extends Handler {
         let player = this.escape(payload.player);
         let reason = payload.reason ? this.escape(payload.reason) : false;
 
-        if (type == "player.join")
-            bot.sendMessage(`:inbox_tray: ${player} has joined`).catch(() => console.error("bot.sendMessage error @ PlayerEventHandler.js#33"));
+        if (type == "player.join") {
+            let serial = this.escape(payload.serial) || "No serial in the payload";
+
+            bot.sendMessage(`:inbox_tray: ${player} has joined (:key: ${serial})`).catch(() => console.error("bot.sendMessage error @ PlayerEventHandler.js#33"));
+        }
         else if (type == "player.kick") {
             let responsible = this.escape(payload.responsible || "Console");
 
