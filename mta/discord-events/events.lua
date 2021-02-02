@@ -19,7 +19,7 @@ function sendPlayerCount(correction)
     local max_players = getMaxPlayers()
     exports.discord:send("server.player_count", { player_count = player_count, max_players = max_players })
 end
-addEventHandler("onDiscordAuthSuccess", root, sendPlayerCount)
+addEventHandler("onDiscordChannelBound", root, sendPlayerCount)
 
 addEvent("onDiscordUserCommand")
 

@@ -1,6 +1,6 @@
 
 addEvent("onDiscordPacket")
-addEvent("onDiscordAuthSuccess")
+addEvent("onDiscordChannelBound")
 
 local socket = false
 
@@ -80,8 +80,6 @@ function handleAuthPacket(socket, payload)
                 channel = socket.channel
             }
         })
-
-        triggerEvent("onDiscordAuthSuccess", resourceRoot)
     else
         local error = tostring(payload.error) or "unknown error"
         outputDebugString("[Discord] Failed to authenticate: ".. error)
@@ -95,6 +93,7 @@ function handleSelectChannelPacket(socket, payload)
             outputDebugString("[Discord] Bot isn't ready")
         else
             outputDebugString("[Discord] Channel has been bound")
+            triggerEvent("onDiscordChannelBound", resourceRoot)
 
             if not socket.bindmessage then
                 socket:write(table.json {
