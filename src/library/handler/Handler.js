@@ -10,14 +10,16 @@ class Handler {
     }
 
     escape(str) {
+        if (str === undefined || str === null) return str;
+
         return String(str)
             .replace(/\\/g, "\\\\")
             .replace(/\*/g, "\u2217")
             .replace(/_/g, "\u02CD")
             .replace(/~/g, "\u223C")
             .replace(/`/g, "\u02CB");
-            //.replace(/([\*\~_`])/g, "\\$1")
-            //.replace(/:.*(\\_)+.*:/g, s => s.replace("\\_", "_"));
+        //.replace(/([\*\~_`])/g, "\\$1")
+        //.replace(/:.*(\\_)+.*:/g, s => s.replace("\\_", "_"));
     }
 }
 

@@ -25,7 +25,10 @@ addEvent("onDiscordUserCommand")
 
 addEventHandler("onPlayerJoin", root,
     function ()
-        exports.discord:send("player.join", { player = getPlayerName(source) })
+        exports.discord:send("player.join", { 
+            player = getPlayerName(source), 
+            serial = getPlayerSerial(source) 
+        })
         sendPlayerCount()
     end
 )
