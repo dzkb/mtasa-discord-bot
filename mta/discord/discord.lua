@@ -1,6 +1,6 @@
 
 addEvent("onDiscordPacket")
-addEvent("onDiscordAuthSuccess")
+addEvent("onDiscordChannelBound")
 
 local socket = false
 
@@ -93,7 +93,7 @@ function handleSelectChannelPacket(socket, payload)
             outputDebugString("[Discord] Bot isn't ready")
         else
             outputDebugString("[Discord] Channel has been bound")
-            triggerEvent("onDiscordAuthSuccess", resourceRoot)
+            triggerEvent("onDiscordChannelBound", resourceRoot)
 
             if not socket.bindmessage then
                 socket:write(table.json {
