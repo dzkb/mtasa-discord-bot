@@ -1,5 +1,6 @@
 
 addEvent("onDiscordPacket")
+addEvent("onDiscordAuthSuccess")
 
 local socket = false
 
@@ -79,6 +80,8 @@ function handleAuthPacket(socket, payload)
                 channel = socket.channel
             }
         })
+
+        triggerEvent("onDiscordAuthSuccess", resourceRoot)
     else
         local error = tostring(payload.error) or "unknown error"
         outputDebugString("[Discord] Failed to authenticate: ".. error)
